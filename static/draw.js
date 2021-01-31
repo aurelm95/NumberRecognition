@@ -3,7 +3,7 @@ var context;
 var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
-var paint = true;
+var paint = false;
 var curColor = "#FF5733";
 
 
