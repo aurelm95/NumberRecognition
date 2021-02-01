@@ -11,7 +11,6 @@ var curColor = "#FF5733";
     - Preparing the Canvas : Basic functions
 **/
 function drawCanvas() {
-
     canvas = document.getElementById('canvas');
     context = document.getElementById('canvas').getContext("2d");
 

@@ -35,9 +35,13 @@ class RedNeuronal():
         # datos_test son datos que usara para evaluar el aprendizaje tras cada epoca. se podria quitar ya que hara que vaya algo mas lento.
         datos_entreno=list(datos_entreno)
         for epoca in range(epocas): # Usar zip y range para iterar es mucho mas eficiente
+            print("epoca:",epoca,'/',epocas)
             random.shuffle(datos_entreno)
             mini_lotes = [datos_entreno[k:k+longitud_mini_lote] for k in range(0, len(datos_entreno), longitud_mini_lote)]
+            progreso=0
             for mini_lote in mini_lotes:
+                print("progreso:",progreso,'/',len(mini_lotes))
+                progreso+=1
                 self.aprender_mini_lote(mini_lote, indice_aprendizaje)
             if datos_test:
                 print("Epoca "+str(epoca)+': '+str(self.evaluate(datos_test))+'/'+str(len(list(datos_test))))
@@ -101,8 +105,12 @@ class RedNeuronal():
         network outputs the correct result. Note that the neural
         network's output is assumed to be the index of whichever
         neuron in the final layer has the highest activation."""
+        test_data=list(test_data)
         test_results = [(np.argmax(self.prealimentacion(x)), y) for (x, y) in test_data]
-        return sum(int(x == y) for (x, y) in test_results)
+        s=sum(int(x == y) for (x, y) in test_results)
+        print("Evaluation:",s,'/',len(test_data))
+        self.evaluation=float(s/len(test_data))
+        return s
 
     def cost_derivative(self, output_activations, y):
         """Return the vector of partial derivatives \partial C_x /
