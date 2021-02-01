@@ -5,16 +5,20 @@ import base64
 import cv2
 
 # Mis imports
-from model import model
+from model import trainer
 from model import mnist_to_img
 from model import RedNeuronal
+
+# https://www.pythonanywhere.com/forums/topic/13405/
+import sys
+sys.path.append(r'model/') # necesario para cargar red debido al modulo pickle
 
 app = Flask(
 	__name__,
 	template_folder='templates',
 	static_folder='static'
 )
-Red=model.cargar_red()
+Red=trainer.cargar_red()
 
 @app.route('/')
 @app.route('/draw')
@@ -50,13 +54,16 @@ def predict():
 		#Resizing and reshaping to keep the ratio.
 		resized = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
 		vect = np.asarray(resized, dtype="uint8")
-		vect = vect.reshape(1, 1, 28, 28).astype('float32')
+		#vect = vect.reshape(1, 1, 28, 28).astype('float32')
+		vect = vect.reshape(28*28,1).astype('float32')
 		print('vect es un',type(vect),'de longitud',vect.shape)
-		print('vect[0] es un',type(vect[0]),'de longitud',vect[0].shape)
-		img=mnist_to_img.muestra(vect[0][0])
+		#print('vect[0] es un',type(vect[0]),'de longitud',vect[0].shape)
+		img=mnist_to_img.muestra(vect)
 		img.save('dibujo.png')
-		final_pred=np.argmax(Red.prealimentacion(vect[0][0]))
-
+		
+		out=Red.prealimentacion(vect)
+		final_pred=np.argmax(out)
+		print("prediction:",out,final_pred)
 
 	return render_template('results.html', prediction =final_pred)
 
