@@ -7,7 +7,6 @@ import cv2
 # Mis imports
 from model import trainer
 from model import mnist_to_img
-from model import RedNeuronal
 
 # https://www.pythonanywhere.com/forums/topic/13405/
 import sys
@@ -59,6 +58,20 @@ def predict():
 		print("prediction:",prob,final_pred)
 
 	return render_template('results.html', prediction=final_pred,prob=prob)
+
+@app.after_request
+def add_header(r):
+	# https://stackoverflow.com/questions/34066804/disabling-caching-in-flask?noredirect=1&lq=1
+	# Problema con cache a la hora de cargar la imagen
+	"""
+	Add headers to both force latest IE rendering engine or Chrome Frame,
+	and also to cache the rendered page for 10 minutes.
+	"""
+	r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+	r.headers["Pragma"] = "no-cache"
+	r.headers["Expires"] = "0"
+	r.headers['Cache-Control'] = 'public, max-age=0'
+	return r
 
 if __name__ == "__main__":  
 	app.run(
