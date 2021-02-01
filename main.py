@@ -38,34 +38,27 @@ def predict():
 		#Preprocess the image : set the image to 28x28 shape
 		#Access the image
 		draw = request.form['url']
-		print('draw es un',type(draw),'de longitud',len(draw))
-		print("empieza asi:",draw[:30])
 		#Removing the useless part of the url.
 		draw = draw[init_Base64:]
-		print('despues de cortar queda asi:',draw[:30])
-		print('y se queda con una longitud de',len(draw))
 		#Decoding
 		draw_decoded = base64.b64decode(draw)
-		print('Tras el decode: draw es un',type(draw_decoded),'de longitud',len(draw_decoded))
 		image = np.asarray(bytearray(draw_decoded), dtype="uint8")
-		print('image es un',type(image),'de longitud',len(image))
-		print('image0=',image[0])
 		image = cv2.imdecode(image, cv2.IMREAD_GRAYSCALE)
 		#Resizing and reshaping to keep the ratio.
 		resized = cv2.resize(image, (28,28), interpolation = cv2.INTER_AREA)
 		vect = np.asarray(resized, dtype="uint8")
-		#vect = vect.reshape(1, 1, 28, 28).astype('float32')
 		vect = vect.reshape(28*28,1).astype('float32')
 		print('vect es un',type(vect),'de longitud',vect.shape)
-		#print('vect[0] es un',type(vect[0]),'de longitud',vect[0].shape)
+
 		img=mnist_to_img.muestra(vect)
-		img.save('dibujo.png')
+		img.save('static/dibujo.png')
 		
 		out=Red.prealimentacion(vect)
+		prob=np.round(out*100,decimals=0).tolist()
 		final_pred=np.argmax(out)
-		print("prediction:",out,final_pred)
+		print("prediction:",prob,final_pred)
 
-	return render_template('results.html', prediction =final_pred)
+	return render_template('results.html', prediction=final_pred,prob=prob)
 
 if __name__ == "__main__":  
 	app.run(

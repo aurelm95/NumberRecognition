@@ -9,17 +9,19 @@
 </head>
 
 <header>
-    Drawing App
+	NumberRecognition
 </header>
 
 <body>
     <h1>Results</h1>
+		<img src="{{ url_for('static', filename='dibujo.png') }}">
     <div class="results">
         {%if prediction%}
-        <h2 style="color:red;">Looks like a(n) {{ prediction }} ! </h2>
+        <h2 style="color:red;">Looks like a {{ prediction }} ! </h2>
         {%else%}
          <h2 style="color:red;">Nothing to predict ! </h2>
         {%endif%}
+				<h2 style="color:blue;">Probabilities: {{ prob }} ! </h2>
     </div>
 </body>
 
