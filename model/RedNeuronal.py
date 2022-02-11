@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import pickle
+import os
 
 class RedNeuronal():
     def __init__(self,neuronas_por_capa=[]):

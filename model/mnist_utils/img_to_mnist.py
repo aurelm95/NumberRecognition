@@ -33,7 +33,7 @@ def imageprepare(argv,nombre_nuevo='ejemplo'):
         wleft = int(round(((28 - nwidth) / 2), 0))  # caculate vertical pozition
         newImage.paste(img, (wleft, 4))  # paste resized image on white canvas
 
-    newImage.save(nombre_nuevo+".png")
+    # newImage.save(nombre_nuevo+".png")
 
     tv = list(newImage.getdata())  # get pixel values
 
