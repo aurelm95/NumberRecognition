@@ -3,7 +3,7 @@ import numpy as np
 import pickle
 
 class RedNeuronal():
-    def __init__(self,neuronas_por_capa):
+    def __init__(self,neuronas_por_capa=[]):
         # Neuronas por capa es un vector que contiene For example, if the list was [2, 3, 1] then it would be a three-layer network, with the first layer containing 2 neurons, the second layer 3 neurons, and the third layer 1 neuron.
         self.numero_de_capas=len(neuronas_por_capa)
         self.neuronas_por_capa=neuronas_por_capa
@@ -133,3 +133,10 @@ class RedNeuronal():
         pickle.dump(self,f)
         f.close()
         print("Red guardada en:",nombre+'.pickle')
+    
+    def cargar_red(self, path_to_pickle_file='model/saved_models/red_guardada.pickle'):
+        f = open(path_to_pickle_file,'rb')
+        Red = pickle.load(f)
+        f.close()
+        print("Red cargada de: ",path_to_pickle_file)
+        self.__dict__=Red.__dict__

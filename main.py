@@ -6,7 +6,7 @@ import cv2
 
 # Mis imports
 from model import trainer
-from model import mnist_to_img
+from model.mnist_utils import mnist_to_img
 
 # https://www.pythonanywhere.com/forums/topic/13405/
 import sys
@@ -33,7 +33,7 @@ def predict():
 	if request.method == 'POST':
 		final_pred = None
 		#Initialize the useless part of the base64 encoded image.
-		init_Base64 = 21;
+		init_Base64 = 21
 		#Preprocess the image : set the image to 28x28 shape
 		#Access the image
 		draw = request.form['url']

@@ -1,4 +1,4 @@
-from model import mnist_loader
+from . import mnist_loader
 
 
 from PIL import Image
