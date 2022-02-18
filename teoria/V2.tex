@@ -1,0 +1,243 @@
+\documentclass{article}
+
+% set font encoding for PDFLaTeX, XeLaTeX, or LuaTeX
+\usepackage{ifxetex,ifluatex}
+\if\ifxetex T\else\ifluatex T\else F\fi\fi T%
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{movie15}
+
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\title{Title of Document}
+\author{Name of Author}
+
+% Enable SageTeX to run SageMath code right inside this LaTeX file.
+% http://doc.sagemath.org/html/en/tutorial/sagetex.html
+% \usepackage{sagetex}
+
+% Enable PythonTeX to run Python – https://ctan.org/pkg/pythontex
+% \usepackage{pythontex}
+
+
+\begin{document}
+\maketitle
+
+\section{notas}
+
+capa densa
+capa oculta
+ap. supervisado
+clasificacion
+
+
+
+crear red python keras: https://youtu.be/aFZEvQDTSyA?t=616
+
+perceptron: unica neurona cuyo input es un vector binario y output es un numero binario. su funcion de activacion es la step function
+https://es.wikipedia.org/wiki/Perceptr%C3%B3n
+https://wikimedia.org/api/rest_v1/media/math/render/svg/50f2b5077f8fa933c912c6ca0571d6c7d3709d83
+$${\displaystyle f(x)={\begin{cases}1&amp;{\text{si }}w\cdot x-u&gt;0\\0&amp;{\text{en otro caso}}\end{cases}}}$$
+
+umbral o sesgo o threshold
+
+perceptron multicapa 
+funcion de activacion
+
+\section{Redes Neuronales}
+%Intuitivamente una red neuronal artificial es un conjunto de unidades que se conocen como neuronas (o nodos) conectadas entre sí. Las redes neuronales artificiales reciben este nombre debido a la semejanza que hay entre su representación gráfica y una red neuronal de un cerebro biológico.\\
+
+%También es un tema de marketing por el tema de "inteligencia artificial"
+
+Formalmente una red neuronal es un modelo de deeplearning. El deeplearning (o también conocido como aprendizaje profundo) es la rama específica del aprendizaje automático (o machine learning) que usa redes neuronales.\\
+
+
+\subsection{Perceptrón}
+
+Un perceptrón (o neurona) es un modelo de deeplearning que recibe como input variables binarias $x_1,\hdots,x_n $ y tiene como output una única variable binaria $y$. A su vez, esta función depende de los parámetros reales $\omega_1,\hdots,\omega_n,u $. A los parámetros $\omega_i$ se les conoce como pesos y al parámetro $u$ se le conoce como umbral (o sesgo o threshold o bias)\footnote{\url{http://neuralnetworksanddeeplearning.com/chap1.html}}.\\
+
+El perceptrón está definido por la siguiente función
+$$y=\begin{cases}
+0, & \text{si } \sum_{i=1}^nw_ix_i-u\leq 0\\
+1, & \text{si } \sum_{i=1}^nw_ix_i-u>0
+\end{cases}$$
+
+El perceptrón sirve como modelo para toma de decisiones basado en otros hechos. Por ejemplo puede modelizar la siguiente toma de decisiones. Consideremos el siguiente escenario\footnote{\url{https://youtu.be/CU24iC3grq8?t=236}}:
+
+\begin{itemize}
+\item $y=$Irnos de viaje
+\item $x_1=$Tengo suficiente dinero?
+\item $x_2=$Mi pareja quiere ir?
+\item $x_3=$Hará buen tiempo?
+\end{itemize}
+
+\textcolor{red}{Introducir grafico}\\
+
+El perceptrón modela una posible toma de decisiones a la hora de decidir si irnos de viaje o no y de él se puede sacar su tabla de la verdad.\\
+
+Sin embargo, un perceptrón no es capaz de modelizar cualquier toma de decisión (tabla de la verdad). Por ejemplo no es capaz de modelizar la operación lógica XOR.\\
+
+
+Nótese que si fijamos $w_1,\hdots,w_n,u\in\mathbb{R} $, entonces
+$$H:=\left\{(x_1,\hdots,x_n)\in\mathbb{R}^n \ \middle| \ \sum_{i=1}^nw_ix_i-u= 0\right\} $$
+define un hiperplano de $\mathbb{R}^n$. Desde un punto de vista geométrico, este hiperplano es el separador entre $\{x\in\{0,1\}^n \ | \ y(x)=1\} $ y $\{x\in\{0,1\}^n \ | \ y(x)=1\} $. Es decir, que el perceptrón únicamente puede hacer una separación lineal (o afín) del conjunto de puntos $\{0,1\}^n $.\\
+
+Como consecuencia, un perceptrón no puede reproducir la operación lógica XOR.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=4cm]{XOR.png}
+\caption{Visualizacación de la separación no lineal de la puerta XOR}
+%foto sacada de este enlace 
+% https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcReKA3PNHEG6uEIRj97rpD1UHESUsqq2OzXvIzWzt7K-YSf7WPv&usqp=CAU
+\end{figure}
+
+% https://www.youtube.com/watch?v=y7NdSrkrwqI
+% http://neuralnetworksanddeeplearning.com/chap1.html
+En la figura \ref{fig:red_nand} se muestra la representación de un perceptrón que reproduce una puerta lógica NAND.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=4cm]{NAND.png}
+\caption{Red neuronal modelizando una puerta NAND}
+\label{fig:red_nand}
+\end{figure}
+Esta es una red con dos capas: la primera contiene dos neuronas y la segunda solo una con un umbral igual a $3$. Además observamos que los pesos de las dos únicas conexiones son iguales a $-2$. En este caso la función de activación de la neurona de la segunda capa es 
+$$f(x)=\begin{cases}
+1 \text{ si } x>0\\
+0 \text{ si } x\leq 0\\
+\end{cases}.$$
+
+En efecto, como se puede ver en la figura \ref{fig:tabla_verdad}, la red reproduce la tabla de la verdad de la puerta lógica NAND.\\
+\begin{figure}[htbp]
+\centering
+\begin{tabular}{ |c|c|c| } 
+ $x_1$ & $x_2$ & output \\ 
+ \hline
+ 0 & 0 & $f(0\cdot (-2)+0\cdot (-2)+3)=f(3)=1$ \\ 
+ 0 & 1 & $f(0\cdot (-2)+1\cdot (-2)+3)=f(1)=1$ \\ 
+ 1 & 0 & $f(1\cdot (-2)+0\cdot (-2)+3)=f(1)=1$ \\ 
+ 1 & 1 & $f(1\cdot (-2)+1\cdot (-2)+3)=f(-1)=0$ 
+\end{tabular}
+\caption{Tabla de la verdad del perceptrón representado en la figura \ref{fig:red_nand}}
+\label{fig:tabla_verdad}
+\end{figure}
+
+
+
+\subsection{Perceptrón multicapa}
+Las puertas NAND son universales para la computación, es decir, se puede conseguir cualquier puerta lógica como combinaciones de estas\footnote{\url{http://neuralnetworksanddeeplearning.com/chap1.html}}.
+
+\section{Redes neuronales convolucionales}
+
+Usar una red neuronal para reconocer dígitos escritos a mano es posible pero no es lo mejor. La red recibiría los píxeles como un vector, perdiendo así la información sobre la posición relativa de los píxles de la imagen. Es natural pensar que esta información es vital para un correcto reconocimiento.\\
+
+La red, con tal de "detectar ejes o lineas", debería aprender por sí sola que relación hay entre los inputs (intensidad de los pixeles) que esta recibe.\\
+
+\subsection{Convolución}
+
+\subsubsection{Filtros}
+Un filtro (o kernel) es una matriz cuadrada $K$ con coeficientes reales. Hay distintos filtros destacables, por ejemplo:
+\begin{itemize}
+\item Filtro de desenfoque (o blur) 3x3: $\begin{pmatrix}
+\frac{1}{9} & \frac{1}{9} & \frac{1}{9}\\
+\frac{1}{9} & \frac{1}{9} & \frac{1}{9}\\
+\frac{1}{9} & \frac{1}{9} & \frac{1}{9}
+\end{pmatrix}$
+
+\item Filtro vertical 3x3: $\begin{pmatrix}
+-1 & 0 & 1\\
+-1 & 0 & 1\\
+-1 & 0 & 1
+\end{pmatrix}$
+
+\item Filtro horizontal 3x3: $\begin{pmatrix}
+1 & 1 & 1\\
+0 & 0 & 0\\
+-1 & -1 & -1
+\end{pmatrix}$
+
+\item Edge detector 3x3: $\begin{pmatrix}
+0 & -1 & 0\\
+-1 & 4 & -1\\
+0 & -1 & 0
+\end{pmatrix}$
+
+
+\end{itemize}
+
+\textcolor{red}{los filtros solo pueden ser de dimension impar??}
+
+
+\subsubsection{Operación de convolución}
+Dada una matriz cuadrada (\textcolor{red}{porque no rectangular?}) $M$ (una imagen en blanco y negro) y un filtro $F$, la operación de convolución devuelve una imagen $M'$.\\
+
+A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
+
+
+Haz click \href{https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif}{aquí} o \href{https://cdn-media-1.freecodecamp.org/images/gb08-2i83P5wPzs3SL-vosNb6Iur5kb5ZH43}{aquí} para ver animaciones de esta operación\footnote{fuente de los gifs: \url{https://juansensio.com/blog/042_cnns}}.
+
+\textcolor{red}{una alternativa seria pasar a markdown para ver }\\
+
+Inicialmente se le hace un padding (rodear con ceros) la imagen $M$ con un número $p$ de lineas. De este modo, $M$ pasa de tener dimensiones $n\times n$ a $(n+2p)\times (n+2p) $ (se añade una fila/columna por todos los lados). A continuación se fija el stride $s$, es decir, la cantidad de píxeles que se desplazará horizontalmente el filtro. Finalmente se genera una nueva matriz $M'$ donde sus entradas son producntos componente a componente del filtro F y submatrices de $M$.\\
+
+En particular la $M'$ tendrá dimensiones $o\times o$ donde
+$$o=\left\lfloor \frac{n+2p-m}{s}\right\rfloor+1$$
+
+NOTA: si la imagen fuera a color, el kernel realmente sería de $3x3x3$ es decir: un filtro con 3 kernels de $3\times3$; luego  esos 3 filtros se suman (y se le suma una unidad bias) y conformarán 1 salida (cómo si fuera 1 solo canal)\footnote{\url{https://www.aprendemachinelearning.com/como-funcionan-las-convolutional-neural-networks-vision-por-ordenador/}}.\\
+
+En realidad, no aplicaremos un solo kernel. Por ejemplo, en esta primera convolución podríamos tener 32 kernels, con lo cual realmente obtendremos 32 matrices de salida con dimensión 28x28x1, dando un total del 25.088 neuronas para nuestra PRIMER CAPA OCULTA de neuronas. Parecen muchas neuronas para una imagen cuadrada de apenas 28 pixeles. El número aumentaría drásticamente si tomáramos una imagen de entrada de 224x224x3 (que aún es considerado un tamaño pequeño)\footnote{\url{https://www.aprendemachinelearning.com/como-funcionan-las-convolutional-neural-networks-vision-por-ordenador/}}.\\
+
+Cuando tratamos con imágenes con más de un canal (por ejemplo rgb), los filtros deben tener el  mismo número de canales (kernels?). De modo que cada kernel  hace una convolución con su canal correspondiente. Posteriormente se cogen todas esos outputs y se hace la media. De este modo, tras convolucionar el filtro con la imagen de más de un canal, se sigue teniendo una imagen con un único canal como output. En consecuencia, la cantidad de imagenes de output será igual a la cantidad de filtros que tenga esa capa convolusional. Finalmente a cada una de estas imágenes se les suma un cierto humbral y se aplica la ReLU.\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\\
+
+Nota: por lo que veo en la libreria de tensorflow, cada kernel del filtro tiene su propio bias. tras aplicar el bias se hace la media.\footnote{\url{https://www.youtube.com/watch?v=S5MwKyYYLSM&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=51}}
+
+\subsection{Implementación}
+Una de las redes más sencillas es la LeNET-5\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\footnote{\url{https://en.wikipedia.org/wiki/LeNet}}
+
+
+\section{enlaces de interes}
+\begin{itemize}
+\item \url{https://indoml.com/2018/03/07/student-notes-convolutional-neural-networks-cnn-introduction/} - ilustraciones muy chulas y utiles
+
+\item webs para ayudar a redactar la seccion:
+\begin{itemize}
+\item \url{https://www.aprendemachinelearning.com/como-funcionan-las-convolutional-neural-networks-vision-por-ordenador/}
+\item \url{https://www.youtube.com/playlist?list=PLv8Cp2NvcY8DpVcsmOT71kymgMmcr59Mf} - lista de reproduccion de un canal que habla sobre las arquitecturas de deres conocidas
+\item \url{https://bootcampai.medium.com/redes-neuronales-convolucionales-5e0ce960caf8}
+\end{itemize}
+\item \url{https://www.youtube.com/watch?v=V8j1oENVz00} - dotcsv (HECHO)
+\item \url{https://www.youtube.com/watch?v=ysqpl6w6Wzg} - dotcsv (parte 2) (interesante pero no creo que sea necesario meterlo aqui)
+\item \url{https://www.youtube.com/watch?v=_fDvfGxwW20} - sensio (FALTA)
+\item \url{https://www.youtube.com/watch?v=AwTH_0yW9_I} - Ringa Tech (FALTA)
+\item \url{https://www.youtube.com/watch?v=0zbhg79i_Bs} - indio cnn desde 0 (OPCIONAL CREO)
+\item \url{https://www.youtube.com/watch?v=AwTH_0yW9_I&t=584s} - operadores importantes: operador Sobel y Algoritmo de Canny (OPCIONAL)
+\end{itemize}
+
+
+
+\subsection{Max-Pooling}
+Si hiciéramos una nueva convolución a partir de esta capa, el número de neuronas de la próxima capa se iría por las nubes (y ello implica mayor procesamiento)! Para reducir el tamaño de la próxima capa de neuronas haremos un proceso de subsampling en el que reduciremos el tamaño de nuestras imágenes filtradas pero en donde deberán prevalecer las características más importantes que detectó cada filtro. Hay diversos tipos de subsampling, yo comentaré el “más usado”: Max-Pooling\footnote{\url{https://www.aprendemachinelearning.com/como-funcionan-las-convolutional-neural-networks-vision-por-ordenador/}}\\
+
+Estas capas también aplican un filtro sobre su entrada, pero en este caso es un solo filtro que además no tiene parámetros sino que aplica una función predeterminada en su campo receptivo (mínimo, máximo (maxpooling), promedio (average pooling o avgpooling, etc)\footnote{\url{https://juansensio.com/blog/042_cnns}}.\\
+
+Haz click \href{https://miro.medium.com/max/1456/1*WvHC5bKyrHa7Wm3ca-pXtg.gif}{aquí} para ver un gif sobre el  max-pooling.
+% gif sacado de https://juansensio.com/blog/042_cnns
+
+\end{document}
+
+
