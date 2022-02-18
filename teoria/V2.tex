@@ -51,9 +51,8 @@ clasificacion
 crear red python keras: https://youtu.be/aFZEvQDTSyA?t=616
 
 perceptron: unica neurona cuyo input es un vector binario y output es un numero binario. su funcion de activacion es la step function
-https://es.wikipedia.org/wiki/Perceptr%C3%B3n
-https://wikimedia.org/api/rest_v1/media/math/render/svg/50f2b5077f8fa933c912c6ca0571d6c7d3709d83
-$${\displaystyle f(x)={\begin{cases}1&amp;{\text{si }}w\cdot x-u&gt;0\\0&amp;{\text{en otro caso}}\end{cases}}}$$
+\url{https://es.wikipedia.org/wiki/Perceptr%C3%B3n}
+\url{https://wikimedia.org/api/rest_v1/media/math/render/svg/50f2b5077f8fa933c912c6ca0571d6c7d3709d83}
 
 umbral o sesgo o threshold
 
@@ -101,7 +100,7 @@ define un hiperplano de $\mathbb{R}^n$. Desde un punto de vista geométrico, est
 Como consecuencia, un perceptrón no puede reproducir la operación lógica XOR.
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4cm]{XOR.png}
+\includegraphics[width=4cm]{imagenes/XOR.png}
 \caption{Visualizacación de la separación no lineal de la puerta XOR}
 %foto sacada de este enlace 
 % https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcReKA3PNHEG6uEIRj97rpD1UHESUsqq2OzXvIzWzt7K-YSf7WPv&usqp=CAU
@@ -109,13 +108,14 @@ Como consecuencia, un perceptrón no puede reproducir la operación lógica XOR.
 
 % https://www.youtube.com/watch?v=y7NdSrkrwqI
 % http://neuralnetworksanddeeplearning.com/chap1.html
-En la figura \ref{fig:red_nand} se muestra la representación de un perceptrón que reproduce una puerta lógica NAND.
+
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4cm]{NAND.png}
+\includegraphics[width=4cm]{imagenes/NAND.png}
 \caption{Red neuronal modelizando una puerta NAND}
 \label{fig:red_nand}
 \end{figure}
+En la figura \ref{fig:red_nand} se muestra la representación de un perceptrón que reproduce una puerta lógica NAND.
 Esta es una red con dos capas: la primera contiene dos neuronas y la segunda solo una con un umbral igual a $3$. Además observamos que los pesos de las dos únicas conexiones son iguales a $-2$. En este caso la función de activación de la neurona de la segunda capa es 
 $$f(x)=\begin{cases}
 1 \text{ si } x>0\\
@@ -151,6 +151,7 @@ La red, con tal de "detectar ejes o lineas", debería aprender por sí sola que 
 \subsection{Convolución}
 
 \subsubsection{Filtros}
+\textcolor{red}{Parece ser que un filtro es el conjunto de kernels de una misma convolución: \url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}
 Un filtro (o kernel) es una matriz cuadrada $K$ con coeficientes reales. Hay distintos filtros destacables, por ejemplo:
 \begin{itemize}
 \item Filtro de desenfoque (o blur) 3x3: $\begin{pmatrix}
