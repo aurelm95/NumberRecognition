@@ -181,11 +181,14 @@ Un filtro (o kernel) es una matriz cuadrada $K$ con coeficientes reales. Hay dis
 
 \end{itemize}
 
-\textcolor{red}{los filtros solo pueden ser de dimension impar??}
+
+\textcolor{red}{Nota: Los filtros suelen ser únicamente de dimension impar. Esto se debe a que de este modo siempre hay un píxel central en el kernel y así podemos saber a qué pixel del mapa de características corresponde. Dicho de otra manera, el kernel tiene que tener un pixel central del cual "se extraen sus características".\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}}
 
 
 \subsubsection{Operación de convolución}
 Dada una matriz cuadrada (\textcolor{red}{porque no rectangular?}) $M$ (una imagen en blanco y negro) y un filtro $F$, la operación de convolución devuelve una imagen $M'$.\\
+
+\textcolor{red}{Nota: es necesario que todos los inputs de las redes tengan un tamaño idéntido. Normalmente, se deciden diseñar las redes "para uso público" para recibir imágenes cuadradas y que cada uno haga el reshape correspondiente. No hay ninguna limitación en las posibles estructuras de las CNNs que limiten la forma del input.\footnote{\url{https://ai.stackexchange.com/questions/8323/how-to-handle-rectangular-images-in-convolutional-neural-networks}}}\\
 
 A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
 
@@ -194,7 +197,9 @@ Haz click \href{https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif}{a
 
 \textcolor{red}{una alternativa seria pasar a markdown para ver }\\
 
-Inicialmente se le hace un padding (rodear con ceros) la imagen $M$ con un número $p$ de lineas. De este modo, $M$ pasa de tener dimensiones $n\times n$ a $(n+2p)\times (n+2p) $ (se añade una fila/columna por todos los lados). A continuación se fija el stride $s$, es decir, la cantidad de píxeles que se desplazará horizontalmente el filtro. Finalmente se genera una nueva matriz $M'$ donde sus entradas son producntos componente a componente del filtro F y submatrices de $M$.\\
+Inicialmente se le hace un padding (rodear con ceros) la imagen $M$ con un número $p$ de lineas. De este modo, $M$ pasa de tener dimensiones $n\times n$ a $(n+2p)\times (n+2p) $ (se añade una fila/columna por todos los lados).\\
+
+A continuación se fija el stride $s$, es decir, la cantidad de píxeles que se desplazará horizontalmente el filtro. Finalmente se genera una nueva matriz $M'$ donde sus entradas son producntos componente a componente del filtro F y submatrices de $M$.\\
 
 En particular la $M'$ tendrá dimensiones $o\times o$ donde
 $$o=\left\lfloor \frac{n+2p-m}{s}\right\rfloor+1$$
@@ -238,6 +243,10 @@ Estas capas también aplican un filtro sobre su entrada, pero en este caso es un
 
 Haz click \href{https://miro.medium.com/max/1456/1*WvHC5bKyrHa7Wm3ca-pXtg.gif}{aquí} para ver un gif sobre el  max-pooling.
 % gif sacado de https://juansensio.com/blog/042_cnns
+
+\section{Generalidades sobre las imágenes}
+
+
 
 \end{document}
 
