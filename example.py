@@ -31,7 +31,9 @@ if __name__=='__main__':
 
     l=list(training_data)
     x,y=l[0]
+    print("shape:",x.shape)
     img=mnist_to_img.muestra(x)
+    img.save("primera.jpg")
     print("solution:",numpy.argmax(y))
     print("prediction:",numpy.argmax(Red.prealimentacion(x)))
 
