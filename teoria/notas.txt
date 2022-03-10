@@ -1,0 +1,4 @@
+enlace a blog sobre comparativa interesante de las estructuras famosas de clasificadores de imagen:
+
+
+https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
