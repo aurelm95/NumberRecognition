@@ -18,7 +18,7 @@ class Convovolucion:
             assert self.filtro.shape[0]==self.filtro.shape[1], "El filtro tiene que ser cuadrado y su shape es: "+str(self.filtro.shape)
             self.tamaño_filtro=self.filtro.shape[0]
     
-    def regiones__de_imagen(self, imagen):
+    def regiones_de_imagen(self, imagen):
         self.imagen=imagen
         alto, ancho=imagen.shape
         # for i in range()
