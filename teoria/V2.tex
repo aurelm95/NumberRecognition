@@ -151,8 +151,11 @@ La red, con tal de "detectar ejes o lineas", debería aprender por sí sola que 
 \subsection{Convolución}
 
 \subsubsection{Filtros}
-\textcolor{red}{Parece ser que un filtro es el conjunto de kernels de una misma convolución: \url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}
-Un filtro (o kernel) es una matriz cuadrada $K$ con coeficientes reales. Hay distintos filtros destacables, por ejemplo:
+Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su píxel principal (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
+
+Un filtro es un tensor de tres dimensiones cuyas "capas" son kernels\footnote{\url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}. Es posible que un filtro contenga un único kernel, de modo que a veces  estas palabras se usan indistintamente.\\
+
+Hay distintos filtros destacables, por ejemplo:
 \begin{itemize}
 \item Filtro de desenfoque (o blur) 3x3: $\begin{pmatrix}
 \frac{1}{9} & \frac{1}{9} & \frac{1}{9}\\
@@ -182,13 +185,13 @@ Un filtro (o kernel) es una matriz cuadrada $K$ con coeficientes reales. Hay dis
 \end{itemize}
 
 
-\textcolor{red}{Nota: Los filtros suelen ser únicamente de dimension impar. Esto se debe a que de este modo siempre hay un píxel central en el kernel y así podemos saber a qué pixel del mapa de características corresponde. Dicho de otra manera, el kernel tiene que tener un pixel central del cual "se extraen sus características".\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}}
+%\textcolor{red}{Nota: Los filtros suelen ser únicamente de dimension impar. Esto se debe a que de este modo siempre hay un píxel central en el kernel y así podemos saber a qué pixel del mapa de características corresponde. Dicho de otra manera, el kernel tiene que tener un pixel central del cual "se extraen sus características".\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}}
 
 
 \subsubsection{Operación de convolución}
-Dada una matriz cuadrada (\textcolor{red}{porque no rectangular?}) $M$ (una imagen en blanco y negro) y un filtro $F$, la operación de convolución devuelve una imagen $M'$.\\
+Dada una matriz cuadrada $M$ (una imagen en blanco y negro) y un filtro $F$, la operación de convolución devuelve una imagen $M'$.\\
 
-\textcolor{red}{Nota: es necesario que todos los inputs de las redes tengan un tamaño idéntido. Normalmente, se deciden diseñar las redes "para uso público" para recibir imágenes cuadradas y que cada uno haga el reshape correspondiente. No hay ninguna limitación en las posibles estructuras de las CNNs que limiten la forma del input.\footnote{\url{https://ai.stackexchange.com/questions/8323/how-to-handle-rectangular-images-in-convolutional-neural-networks}}}\\
+Definicion formal de la convolución: \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}\\
 
 A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
 
@@ -245,6 +248,11 @@ Haz click \href{https://miro.medium.com/max/1456/1*WvHC5bKyrHa7Wm3ca-pXtg.gif}{a
 % gif sacado de https://juansensio.com/blog/042_cnns
 
 \section{Generalidades sobre las imágenes}
+\subsection{Input de las redes neuronales}
+
+La arquitectura de una red neuronal podría adaptarse para tener como input una imagen con dimensiones cualesquiera.\\
+
+Sin embargo, normalmente se deciden diseñar las redes "para uso público" y para recibir imágenes cuadradas y que cada uno haga el reshape correspondiente. No hay ninguna limitación en las posibles estructuras de las CNNs que limiten la forma del input.\footnote{\url{https://ai.stackexchange.com/questions/8323/how-to-handle-rectangular-images-in-convolutional-neural-networks}}
 
 \section{Redes convolucionales}
 En realidad la seccion deberia tener estas subsecciones aunque quizas en otro ordenador (por ejemplo la itepretacion/idea deberia ir primero)
