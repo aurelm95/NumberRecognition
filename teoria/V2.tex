@@ -189,7 +189,11 @@ Hay distintos filtros destacables, por ejemplo:
 
 
 \subsubsection{Operación de convolución}
-Dada una matriz cuadrada $M$ (una imagen en blanco y negro) y un filtro $F$, la operación de convolución devuelve una imagen $M'$.\\
+Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y $l$ filtros $F$ formado por $c$ kernels de dimensión $m\times m$ con $m<n$, la operación de convolución devuelve una imagen $I'$ con $l$ canales (o feature maps) de dimensión $p\times p$.\\
+
+El elemento $i,j$ del canal $k$ de $I'$ viene definido por
+
+$$I'[i,j,k]=\sum \sum  $$
 
 Definicion formal de la convolución: \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}\\
 
