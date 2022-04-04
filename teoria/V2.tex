@@ -187,16 +187,27 @@ Hay distintos filtros destacables, por ejemplo:
 
 %\textcolor{red}{Nota: Los filtros suelen ser únicamente de dimension impar. Esto se debe a que de este modo siempre hay un píxel central en el kernel y así podemos saber a qué pixel del mapa de características corresponde. Dicho de otra manera, el kernel tiene que tener un pixel central del cual "se extraen sus características".\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}}
 
+\subsection{Padding}
+Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y una cantidad entera $p$, se conoce como hacer padding (o rellenar) con ceros a la imagen $I$ a la operación cuyo output es la nueva imagen $I'$ con $c$ canales de dimensión $n+2p\times n+2p$ definida como
+
+$$I'[i,j,k]=\begin{cases}
+  I[i-p,j-p,k] & p\leq i,j<n+p\\
+  0 & \text{En caso contrario}
+\end{cases} $$
+
 
 \subsubsection{Operación de convolución}
-Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y $l$ filtros $F$ formado por $c$ kernels de dimensión $m\times m$ con $m<n$, la operación de convolución devuelve una imagen $I'$ con $l$ canales (o feature maps) de dimensión $p\times p$.\\
+Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y un filtro $F$ formado por $c$ kernels de dimensión $m\times m$ con $m<n$, la operación de convolución devuelve una imagen $I'$ con un canal (o feature map) de dimensión, digamos, $o\times o$.\\
 
-El elemento $i,j$ del canal $k$ de $I'$ viene definido por
 
-$$I'[i,j,k]=\sum \sum  $$
+Sean $i$ y $j$ tales que 
+$$\frac{m-1}{2}\leq i,j<n-\frac{m-1}{2}. $$
+El elemento $i,j$ de $I'$ viene definido\footnote{Inspirado en \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}} por
 
-Definicion formal de la convolución: \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}\\
+$$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
 
+Por lo tanto tenemos que  $o= n-m+1 $.\\
+ 
 A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
 
 
