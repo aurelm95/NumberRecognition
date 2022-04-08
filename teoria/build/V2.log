@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.18)  4 APR 2022 10:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.18)  5 APR 2022 15:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -477,17 +477,12 @@ Overfull \hbox (85.82886pt too wide) in paragraph at lines 205--205
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 211--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
 
  []
 
@@ -502,12 +497,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 220--221
  []
 
 
-Overfull \hbox (137.55002pt too wide) in paragraph at lines 225--225
-[][][][]$\T1/lmtt/m/n/8 https : / / www . aprendemachinelearning . com / como-[]funcionan-[]las-[]convolutional-[]neural-[]networks-[]vision-[]por-[]ordenador/$[]| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
@@ -521,9 +511,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--228
 
  []
 
-[5]
-Overfull \hbox (27.29802pt too wide) in paragraph at lines 229--229
-[][][][]$\T1/lmtt/m/n/8 https : / / www . youtube . com / watch ? v = HEH1clGg8o8 & list = PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj &
+
+Overfull \hbox (137.55002pt too wide) in paragraph at lines 229--229
+[][][][]$\T1/lmtt/m/n/8 https : / / www . aprendemachinelearning . com / como-[]funcionan-[]las-[]convolutional-[]neural-[]networks-[]vision-[]por-[]ordenador/$[]| 
  []
 
 
@@ -531,49 +521,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
-
+[5]
 Overfull \hbox (27.29802pt too wide) in paragraph at lines 231--231
-[][][][]$\T1/lmtt/m/n/8 https : / / www . youtube . com / watch ? v = S5MwKyYYLSM & list = PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj &
- []
-
-
-Overfull \hbox (27.29802pt too wide) in paragraph at lines 234--234
 [][][][]$\T1/lmtt/m/n/8 https : / / www . youtube . com / watch ? v = HEH1clGg8o8 & list = PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj &
  []
 
 
-Overfull \hbox (160.74864pt too wide) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
+Overfull \hbox (27.29802pt too wide) in paragraph at lines 233--233
+[][][][]$\T1/lmtt/m/n/8 https : / / www . youtube . com / watch ? v = S5MwKyYYLSM & list = PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj &
+ []
+
+
+Overfull \hbox (27.29802pt too wide) in paragraph at lines 236--236
+[][][][]$\T1/lmtt/m/n/8 https : / / www . youtube . com / watch ? v = HEH1clGg8o8 & list = PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj &
+ []
+
+
+Overfull \hbox (160.74864pt too wide) in paragraph at lines 241--242
 [][]$\T1/lmtt/m/n/10 https : / / indoml . com / 2018 / 03 / 07 / student-[]notes-[]convolutional-[]neural-[]networks-[]cnn-[]introduction/$[]
  []
 
 
-Overfull \hbox (278.24837pt too wide) in paragraph at lines 243--244
+Overfull \hbox (278.24837pt too wide) in paragraph at lines 245--246
 [][]$\T1/lmtt/m/n/10 https : / / www . aprendemachinelearning . com / como-[]funcionan-[]las-[]convolutional-[]neural-[]networks-[]vision-[]por-[]ordenador/$[] 
  []
 
 
-Overfull \hbox (79.99893pt too wide) in paragraph at lines 244--245
+Overfull \hbox (79.99893pt too wide) in paragraph at lines 246--247
 [][]$\T1/lmtt/m/n/10 https : / / www . youtube . com / playlist ? list = PLv8Cp2NvcY8DpVcsmOT71kymgMmcr59Mf$[]
  []
 
 
-Overfull \hbox (97.24889pt too wide) in paragraph at lines 245--246
+Overfull \hbox (97.24889pt too wide) in paragraph at lines 247--248
 [][]$\T1/lmtt/m/n/10 https : / / bootcampai . medium . com / redes-[]neuronales-[]convolucionales-[]5e0ce960caf8$[] 
  []
 
 
-Overfull \hbox (4.22136pt too wide) in paragraph at lines 250--251
+Overfull \hbox (4.22136pt too wide) in paragraph at lines 252--253
 [][]$\T1/lmtt/m/n/10 https : / / www . youtube . com / watch ? v = AwTH _ 0yW9 _ I$[] \T1/lmr/m/n/10 - Ringa Tech (FALTA) 
  []
 
 [6]
-Overfull \hbox (137.55002pt too wide) in paragraph at lines 258--258
+Overfull \hbox (137.55002pt too wide) in paragraph at lines 260--260
 [][][][]$\T1/lmtt/m/n/8 https : / / www . aprendemachinelearning . com / como-[]funcionan-[]las-[]convolutional-[]neural-[]networks-[]vision-[]por-[]ordenador/$[]| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
-
  []
 
 
@@ -582,17 +577,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 260--261
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--269
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  []
 
 
-Overfull \hbox (137.55002pt too wide) in paragraph at lines 270--270
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+
+Overfull \hbox (137.55002pt too wide) in paragraph at lines 272--272
 [][][][]$\T1/lmtt/m/n/8 https : / / ai . stackexchange . com / questions / 8323 / how-[]to-[]handle-[]rectangular-[]images-[]in-[]convolutional-[]neural-[]networks$[]| 
  []
 
 [7]
-Overfull \hbox (3.10336pt too wide) in paragraph at lines 281--281
+Overfull \hbox (3.10336pt too wide) in paragraph at lines 283--283
 []\T1/lmr/bx/n/12 representacion grafica de una capa con-volu-cional/redes
  []
 
@@ -613,9 +613,9 @@ Here is how much of TeX's memory you used:
  28103 multiletter control sequences out of 15000+600000
  528265 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,10n,63p,846b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,63p,837b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}<C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb><C:/Users/Aurelio/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on c:\Users\Aurelio\Desktop\Aure\cnnfs\NumberRecognition\teoria\build\V2.pdf (8 pages, 400921 bytes).
+Output written on c:\Users\Aurelio\Desktop\Aure\cnnfs\NumberRecognition\teoria\build\V2.pdf (8 pages, 401232 bytes).
 PDF statistics:
  322 PDF objects out of 1000 (max. 8388607)
  48 named destinations out of 1000 (max. 500000)

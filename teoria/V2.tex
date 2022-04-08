@@ -206,6 +206,8 @@ El elemento $i,j$ de $I'$ viene definido\footnote{Inspirado en \url{https://ichi
 
 $$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
 
+$$I'[i,j]=\sum_{\alpha=0}^c \sum_{\beta=0}^m \sum_{\gamma=0}^m I[i+\beta,j+\gamma,\alpha] F[\beta,\gamma,\alpha]$$
+
 Por lo tanto tenemos que  $o= n-m+1 $.\\
  
 A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
