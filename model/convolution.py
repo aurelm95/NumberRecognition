@@ -49,12 +49,25 @@ class Convolucion:
     
     def aplicar_convolucion_full(self, imagen):
         """
-        Applies convolution to a given image with current filter, sride and padding
+        Applies convolution to a given image with the current filter, stride and padding
 
         Image has to be in the form channels first
         
         
         """
+        result=[]
+        # asumo que imagen es una np.array cuadrada de lado .shape[0]
+        tamaño_output=int(np.floor((imagen.shape[0]+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        print("tamaño_output:",tamaño_output)
+        imagen=np.pad(imagen,self.padding)
+        # print(imagen)
+        for i in range(tamaño_output):
+            fila=[]
+            for j in range(tamaño_output):
+                region=imagen[i:i+self.tamaño_filtro,j:j+self.tamaño_filtro]
+                fila.append(np.sum(region*self.filtro))
+            result.append(fila)
+        return np.array(result)
 
         
 
