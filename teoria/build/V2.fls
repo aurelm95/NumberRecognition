@@ -739,11 +739,11 @@ INPUT c:\Users\Aurelio\Desktop\Aure\cnnfs\NumberRecognition\teoria\build\V2.aux
 INPUT c:\Users\Aurelio\Desktop\Aure\cnnfs\NumberRecognition\teoria\build\V2.out
 INPUT c:\Users\Aurelio\Desktop\Aure\cnnfs\NumberRecognition\teoria\build\V2.out
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ec.enc
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
+INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx12.pfb
@@ -752,8 +752,6 @@ INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmex1
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmex10.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi10.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi10.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi5.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi5.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
@@ -762,8 +760,6 @@ INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr17.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr17.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr5.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr5.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr6.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr6.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pfb
@@ -772,8 +768,6 @@ INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy5.pfb
-INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy5.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\Aurelio\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt10.pfb

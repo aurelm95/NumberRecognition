@@ -1,7 +1,7 @@
 import numpy as np
 import time
 
-class Convovolucion:
+class Convolucion:
 
     def __init__(self,n_filtros=1,tamaño_filtro=3, stride=1, padding=1, filtro=None):
         # constantes
@@ -26,6 +26,13 @@ class Convovolucion:
 
     # metodo pensado para tener un unico filtro y una imagen con un unico canal
     def aplicar_convolucion_ingenua(self, imagen):
+        """
+        Applies convolution to a given image with current filter, sride and padding
+
+        Image has to be in the form channels first
+        
+        
+        """
         result=[]
         # asumo que imagen es una np.array cuadrada de lado .shape[0]
         tamaño_output=int(np.floor((imagen.shape[0]+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
@@ -39,7 +46,21 @@ class Convovolucion:
                 fila.append(np.sum(region*self.filtro))
             result.append(fila)
         return np.array(result)
+    
+    def aplicar_convolucion_full(self, imagen):
+        """
+        Applies convolution to a given image with current filter, sride and padding
 
+        Image has to be in the form channels first
+        
+        
+        """
+
+        
+
+
+    # Sobre implementaciones eficientes de la convolucion de imagenc on filtro
+    # https://stackoverflow.com/questions/5710842/fastest-2d-convolution-or-image-filter-in-python
 
 
 uno=np.array([
@@ -55,7 +76,7 @@ igual=np.array([
 ])
 
 if __name__=='__main__':
-    c=Convovolucion(filtro=igual)
+    c=Convolucion(filtro=igual)
     t0=time.time()
     cuno=c.aplicar_convolucion_ingenua(uno)
     print("timepo:",round(time.time()-t0,4))

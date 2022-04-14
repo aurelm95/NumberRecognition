@@ -148,6 +148,8 @@ Usar una red neuronal para reconocer dígitos escritos a mano es posible pero no
 
 La red, con tal de "detectar ejes o lineas", debería aprender por sí sola que relación hay entre los inputs (intensidad de los pixeles) que esta recibe.\\
 
+Otro aspecto a mejorar es la invarianza por traslación\footnote{\url{https://www.youtube.com/watch?v=dAetIuYz46g}}. Una red entrenada para reconocer números centrados en la imagen no sería capaz de reconocerlos si estos están a un lado de la imagen (no es capaz de generalizaar las formas y depende masivamente de la posición).
+
 \subsection{Convolución}
 
 \subsubsection{Filtros}
@@ -188,32 +190,32 @@ Hay distintos filtros destacables, por ejemplo:
 %\textcolor{red}{Nota: Los filtros suelen ser únicamente de dimension impar. Esto se debe a que de este modo siempre hay un píxel central en el kernel y así podemos saber a qué pixel del mapa de características corresponde. Dicho de otra manera, el kernel tiene que tener un pixel central del cual "se extraen sus características".\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}}
 
 \subsection{Padding}
-Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y una cantidad entera $p$, se conoce como hacer padding (o rellenar) con ceros a la imagen $I$ a la operación cuyo output es la nueva imagen $I'$ con $c$ canales de dimensión $n+2p\times n+2p$ definida como
+Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y una cantidad entera $p$, se conoce como hacer padding (o rellenar) con ceros a la imagen $I$ a la operación cuyo output es la nueva imagen, que denotaremos con $Pad(I,p)$, compuesta por $c$ canales de dimensión $n+2p\times n+2p$ definida como
 
-$$I'[i,j,k]=\begin{cases}
+$$Pad(I,p)[i,j,k]:=\begin{cases}
   I[i-p,j-p,k] & p\leq i,j<n+p\\
   0 & \text{En caso contrario}
 \end{cases} $$
 
 
 \subsubsection{Operación de convolución}
-Dada una imagen $I$ con $c$ canales de resolución $n\times n$ y un filtro $F$ formado por $c$ kernels de dimensión $m\times m$ con $m<n$, la operación de convolución devuelve una imagen $I'$ con un canal (o feature map) de dimensión, digamos, $o\times o$.\\
+Sea $I$ una imagen con $c$ canales de resolución $n\times n$ y sea $F$ un filtro formado por $c$ kernels de dimensión $m\times m$ con $m<n$. Sean $p,s\in \mathbb{N}$. La operación de convolución de $I$ y $F$ con un stride $s$ y padding $p$ es una imagen $Conv(I,F,p,s)$ con un canal (o feature map) de dimensión, digamos, $o\times o$.\\
 
 
-Sean $i$ y $j$ tales que 
-$$\frac{m-1}{2}\leq i,j<n-\frac{m-1}{2}. $$
-El elemento $i,j$ de $I'$ viene definido\footnote{Inspirado en \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}} por
+% Sean $i$ y $j$ tales que 
+% $$\frac{m-1}{2}\leq i,j<n-\frac{m-1}{2}. $$
+El elemento $i,j$ de $Conv(I,F,p,s)$ viene definido\footnote{Inspirado en \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}} por
 
-$$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
+% $$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
 
-$$I'[i,j]=\sum_{\alpha=0}^c \sum_{\beta=0}^m \sum_{\gamma=0}^m I[i+\beta,j+\gamma,\alpha] F[\beta,\gamma,\alpha]$$
+$$Conv(I,F,p,s)[i,j]:=\sum_{\alpha=0}^c \sum_{\beta=0}^m \sum_{\gamma=0}^m Pad(I,p)[i+s\cdot\beta,j+s\cdot\gamma,\alpha] F[\beta,\gamma,\alpha]$$
 
 Por lo tanto tenemos que  $o= n-m+1 $.\\
  
 A grosso modo, la convolución genera una nueva matriz conocida como feature map o mapa de características mediante productos escalares de $F$ y submatrices de $M$.\\
 
 
-Haz click \href{https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif}{aquí} o \href{https://cdn-media-1.freecodecamp.org/images/gb08-2i83P5wPzs3SL-vosNb6Iur5kb5ZH43}{aquí} para ver animaciones de esta operación\footnote{fuente de los gifs: \url{https://juansensio.com/blog/042_cnns}}.
+Haz click \href{https://miro.medium.com/max/1052/1*GcI7G-JLAQiEoCON7xFbhg.gif}{aquí}, \href{https://cdn-media-1.freecodecamp.org/images/gb08-2i83P5wPzs3SL-vosNb6Iur5kb5ZH43}{aquí} o \href{https://thumbs.gfycat.com/AffectionateMemorableGreyhounddog-size_restricted.gif}{aquí} para ver animaciones de esta operación\footnote{fuente de los gifs: \url{https://juansensio.com/blog/042_cnns}}.
 
 \textcolor{red}{una alternativa seria pasar a markdown para ver }\\
 
@@ -233,8 +235,9 @@ Cuando tratamos con imágenes con más de un canal (por ejemplo rgb), los filtro
 Nota: por lo que veo en la libreria de tensorflow, cada kernel del filtro tiene su propio bias. tras aplicar el bias se hace la media.\footnote{\url{https://www.youtube.com/watch?v=S5MwKyYYLSM&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=51}}
 
 \subsection{Implementación}
-Una de las redes más sencillas es la LeNET-5\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\footnote{\url{https://en.wikipedia.org/wiki/LeNet}}
+Una de las redes más sencillas es la LeNET-5\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\footnote{\url{https://en.wikipedia.org/wiki/LeNet}}\\
 
+sensio -arquitecturas de cnns famosas: \url{https://www.youtube.com/watch?v=IKB8rzGU8Wo}
 
 \section{enlaces de interes}
 \begin{itemize}
@@ -247,16 +250,18 @@ Una de las redes más sencillas es la LeNET-5\footnote{\url{https://www.youtube.
 \item \url{https://bootcampai.medium.com/redes-neuronales-convolucionales-5e0ce960caf8}
 \end{itemize}
 \item \url{https://www.youtube.com/watch?v=V8j1oENVz00} - dotcsv (HECHO)
-\item \url{https://www.youtube.com/watch?v=ysqpl6w6Wzg} - dotcsv (parte 2) (interesante pero no creo que sea necesario meterlo aqui)
-\item \url{https://www.youtube.com/watch?v=_fDvfGxwW20} - sensio (FALTA)
-\item \url{https://www.youtube.com/watch?v=AwTH_0yW9_I} - Ringa Tech (FALTA)
+\item \url{https://www.youtube.com/watch?v=ysqpl6w6Wzg} - dotcsv (VISTO, TODO) (interesante pero no creo que sea necesario meterlo aqui). El video empieza a partir del min 6:20. Hbala sobre comolos filtros detectan cada vez cosas más complejas y como intepretar cada unon delos filtros. Seria interesante reproducir eso. Toda esta visualizacióon la hace con "l microscopio de openAI": \url{https://microscope.openai.com/models}
+\item \url{https://www.youtube.com/watch?v=_fDvfGxwW20} - sensio (VISTO, TODO) - interesante a partir del min 14:30 donde muestra una implementacionde una cnn usando pytorch. tambien son interesantes algunos gifs que ya he sacado de su web
+\item \url{https://www.youtube.com/watch?v=AwTH_0yW9_I} - Ringa Tech (HECHO)
 \item \url{https://www.youtube.com/watch?v=0zbhg79i_Bs} - indio cnn desde 0 (OPCIONAL CREO)
 \item \url{https://www.youtube.com/watch?v=AwTH_0yW9_I&t=584s} - operadores importantes: operador Sobel y Algoritmo de Canny (OPCIONAL)
+\item \url{https://stackoverflow.com/questions/67409505/python-2d-convolution-optimization} - curiosa implementacion en python de una visualizacion ascii de la convolucion
+\item \url{https://www.youtube.com/watch?v=OYXkoZXEZc4&list=PLkgbkukKg_Nr-CAmU1yGbhJ8UELVDJ07I} - sensio (FALTA) - lista de reproduccion en la que parece que implementa unlocalizador de objetos y segmentador de imagenes desde cero. seguramente lo hagaa partir de torch pero no esta mal
 \end{itemize}
 
 
 
-\subsection{Max-Pooling}
+\subsection{Max-Pooling (deberia ser poolig en general porque tambien hay average pooling)}
 Si hiciéramos una nueva convolución a partir de esta capa, el número de neuronas de la próxima capa se iría por las nubes (y ello implica mayor procesamiento)! Para reducir el tamaño de la próxima capa de neuronas haremos un proceso de subsampling en el que reduciremos el tamaño de nuestras imágenes filtradas pero en donde deberán prevalecer las características más importantes que detectó cada filtro. Hay diversos tipos de subsampling, yo comentaré el “más usado”: Max-Pooling\footnote{\url{https://www.aprendemachinelearning.com/como-funcionan-las-convolutional-neural-networks-vision-por-ordenador/}}\\
 
 Estas capas también aplican un filtro sobre su entrada, pero en este caso es un solo filtro que además no tiene parámetros sino que aplica una función predeterminada en su campo receptivo (mínimo, máximo (maxpooling), promedio (average pooling o avgpooling, etc)\footnote{\url{https://juansensio.com/blog/042_cnns}}.\\
@@ -265,6 +270,26 @@ Haz click \href{https://miro.medium.com/max/1456/1*WvHC5bKyrHa7Wm3ca-pXtg.gif}{a
 % gif sacado de https://juansensio.com/blog/042_cnns
 
 \section{Generalidades sobre las imágenes}
+
+\subsection{Canales de las imágenes}
+Las imágenes en blanco y negro se pueden representar con un único canal, es deicr, con una matriz de enteros en el rango $[0,255]$ o floats en el rango $[0,1]$.\\
+
+Si la imagen es de color, entonces se representan mediante los tres canales RGB. De modo que una imagen en color se representa mediante un tensor (martriz) tridimensional.\\
+
+En general una "imagen" podría tener tantos canales como se quisiera. Por ejemplo las redes neuronales convolucionales producen imagenes con muchos canales.
+
+\subsubsection{Orden de los canales de las imágenes}
+No hay un consenso en el orden de los indices que deben representar la altura, anchura y canales de una imagen. Por ejemplo una imagen con $c$ canales, una altura $h$ y una anchura $w$ podría representarse de las dos siguientes formas\footnote{\url{https://machinelearningmastery.com/a-gentle-introduction-to-channels-first-and-channels-last-image-formats-for-deep-learning}}.\\
+
+\begin{enumerate}
+  \item Channels First: Tensor de dimensiones $c\times h\times w$ (Como por ejemplo pytorch)
+  \item Channels Last: Tensor de dimensiones $h\times w\times c$ (como por ejemplo tensorflow y numpy)
+\end{enumerate}
+
+La manera más rápida de pasar de un formato a otro (permutar los ejes) es usando numpy.transpose\footnote{\url{https://stackoverflow.com/questions/43829711/what-is-the-correct-way-to-change-image-channel-ordering-between-channels-first}}
+
+
+
 \subsection{Input de las redes neuronales}
 
 La arquitectura de una red neuronal podría adaptarse para tener como input una imagen con dimensiones cualesquiera.\\
