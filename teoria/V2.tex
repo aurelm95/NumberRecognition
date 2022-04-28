@@ -153,7 +153,7 @@ Otro aspecto a mejorar es la invarianza por traslación\footnote{\url{https://ww
 \subsection{Convolución}
 
 \subsubsection{Filtros}
-Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su píxel principal (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
+Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su elemento principal (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
 
 Un filtro es un tensor de tres dimensiones cuyas "capas" son kernels\footnote{\url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}. Es posible que un filtro contenga un único kernel, de modo que a veces  estas palabras se usan indistintamente.\\
 
@@ -199,7 +199,7 @@ $$Pad(I,p)[i,j,k]:=\begin{cases}
 
 
 \subsubsection{Operación de convolución}
-Sea $I$ una imagen con $c$ canales de resolución $n\times n$ y sea $F$ un filtro formado por $c$ kernels de dimensión $m\times m$ con $m<n$. Sean $p,s\in \mathbb{N}$. La operación de convolución de $I$ y $F$ con un stride $s$ y padding $p$ es una imagen $Conv(I,F,p,s)$ con un canal (o feature map) de dimensión, digamos, $o\times o$.\\
+Sea $I$ una imagen con $c$ canales de resolución $n\times n$ y sea $F$ un filtro formado por $c$ kernels de dimensión $m\times m$ con $m<n$. Sean $p,s\in \mathbb{N}$. La operación de convolución de $I$ y $F$ con un stride $s$ y padding $p$ es una imagen $Conv(I,F,p,s)$ con un único canal (o feature map) de dimensión, digamos, $o\times o$.\\
 
 
 % Sean $i$ y $j$ tales que 
@@ -208,7 +208,7 @@ El elemento $i,j$ de $Conv(I,F,p,s)$ viene definido\footnote{Inspirado en \url{h
 
 % $$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
 
-$$Conv(I,F,p,s)[i,j]:=\sum_{\alpha=0}^c \sum_{\beta=0}^m \sum_{\gamma=0}^m Pad(I,p)[i\cdot s+\beta,j\cdot s+\gamma,\alpha] F[\beta,\gamma,\alpha]$$
+$$Conv(I,F,p,s)[i,j]:=\sum_{\alpha=0}^c \sum_{\beta=0}^m \sum_{\gamma=0}^m Pad(I,p)[i\cdot s+\beta,j\cdot s+\gamma,\alpha]\cdot  F[\beta,\gamma,\alpha]$$
 
 donde 
 $$0\leq i\cdot s+\beta <n+2p \quad \forall i,\beta $$
