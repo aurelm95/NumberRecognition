@@ -1,5 +1,8 @@
 import numpy as np
 import time
+import cv2
+
+import filters
 
 class Convolucion:
 
@@ -22,7 +25,6 @@ class Convolucion:
         self.imagen=imagen
         alto, ancho=imagen.shape
         # for i in range()
-
 
     # metodo pensado para tener un unico filtro y una imagen con un unico canal
     def aplicar_convolucion_ingenua(self, imagen):
@@ -78,6 +80,7 @@ class Convolucion:
                     fila.append(np.sum(region*self.filtro))
                 result.append(fila)
         return np.array(result)
+    
     
     
 
@@ -143,8 +146,21 @@ if __name__=='__main__' and 0:
     c=Convolucion(filtro=igual)
     t0=time.time()
     cuno=c.aplicar_convolucion_ingenua(uno)
-    print("timepo:",round(time.time()-t0,4))
+    print("tiempo:",round(time.time()-t0,8))
     print(cuno)
 
-if __name__=='__main__':
+if __name__=='__main__' and 0:
     t=t1*t2
+
+
+if __name__=='__main__':
+    lena_image=cv2.imread("../../lena.jpg")
+    cv2.imshow("img",lena_image)
+    cv2.waitKey(11000)
+    lena_image_channels_first=np.einsum('ijk->kij',lena_image) # parece ser que es lo mas rapido https://stackoverflow.com/questions/43829711/what-is-the-correct-way-to-change-image-channel-ordering-between-channels-first
+    print(lena_image_channels_first.shape)
+    blur=Convolucion(filtro=filters.BLUR_FILTER)
+    result=blur.aplicar_convolucion_full(lena_image_channels_first)
+    print(result.shape)
+    result=np.einsum('kij->ijk',result)
+    print(result.shape)
