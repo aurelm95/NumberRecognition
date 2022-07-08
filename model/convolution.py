@@ -69,16 +69,18 @@ class Convolucion:
         if debug: 
             assert height==width, "ERROR: The image is not squared!"
         tamaño_output=int(np.floor((height+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        print("Tamaño de la imagen:",imagen.shape)
+        print("Tamaño del filtro:",self.filtro.shape)
         print("tamaño_output:",tamaño_output)
-        imagen=np.pad(imagen,self.padding)
-        # print(imagen)
-        for k in range(channels):
-            for i in range(tamaño_output):
-                fila=[]
-                for j in range(tamaño_output):
-                    region=imagen[:,i*self.stride:i*self.stride+self.tamaño_filtro,j*self.stride:j*self.stride+self.tamaño_filtro]
-                    fila.append(np.sum(region*self.filtro))
-                result.append(fila)
+        imagen=np.pad(imagen,self.padding)[1:-1] # El padding hace que tenga 5 canales. me quedo con los tres del medio
+        print("Tras el padding, la imagen tiene una shape:",imagen.shape)
+        for i in range(tamaño_output):
+            fila=[]
+            for j in range(tamaño_output):
+                region=imagen[:,i*self.stride:i*self.stride+self.tamaño_filtro,j*self.stride:j*self.stride+self.tamaño_filtro]
+                # print("Tamaño de la region:",region.shape)
+                fila.append(np.sum(region*self.filtro))
+            result.append(fila)
         return np.array(result)
     
     
@@ -150,17 +152,21 @@ if __name__=='__main__' and 0:
     print(cuno)
 
 if __name__=='__main__' and 0:
-    t=t1*t2
-
-
-if __name__=='__main__':
     lena_image=cv2.imread("../../lena.jpg")
-    cv2.imshow("img",lena_image)
-    cv2.waitKey(11000)
+    img=np.einsum('ijk->kij',lena_image)
+
+
+if __name__=='__main__' and 1:
+    lena_image=cv2.imread("../../lena.jpg")
+    print("imagen cargada:",type(lena_image))
+    # cv2.imshow("img",lena_image)
+    # cv2.waitKey(11000)
     lena_image_channels_first=np.einsum('ijk->kij',lena_image) # parece ser que es lo mas rapido https://stackoverflow.com/questions/43829711/what-is-the-correct-way-to-change-image-channel-ordering-between-channels-first
     print(lena_image_channels_first.shape)
     blur=Convolucion(filtro=filters.BLUR_FILTER)
     result=blur.aplicar_convolucion_full(lena_image_channels_first)
-    print(result.shape)
-    result=np.einsum('kij->ijk',result)
-    print(result.shape)
+    print("El resultado tiene un shape:",result.shape)
+    # result=np.einsum('kij->ijk',result)
+    print(result)
+    # cv2.imshow("img",result)
+    # cv2.waitKey(11000)

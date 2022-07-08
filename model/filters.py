@@ -1,5 +1,4 @@
 import numpy as np
-import numpy as np
 
 
 BLUR_FILTER=np.array([
@@ -15,5 +14,6 @@ BLUR_FILTER=np.array([
 
 
 if __name__=='__main__':
+    BLUR_FILTER=np.pad(BLUR_FILTER,(1,))[1:-1]
     print(BLUR_FILTER)
 
