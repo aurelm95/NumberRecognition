@@ -1,11 +1,11 @@
 # NumberRecognition
-python flask Web App to test a deep learning model that recognizes digit numbers:
-https://NumberRecognition.aurelm.repl.co
+
+This repo is about a personal implementation of a Deep Neural Network from scratch, that is, without any deep learning framewrok and only using `numpy` for fast execution purposes.
+
+More precisely, in [this python module](/model/RedNeuronal.py), you can find an implementation of a fully connected neural network a.k.a multi-layer perceptron.
+
+## Trained example model
+
+This repo also provides a [trained model](/model/saved_models/red_guardada.pickle) with the [mnist digit dataset](/model/data/mnist.pkl.gz), which achieved a
 
 Neural Network and data source: http://neuralnetworksanddeeplearning.com/
-
-javascript and html source:
-- https://towardsdatascience.com/develop-an-interactive-drawing-recognition-app-based-on-cnn-deploy-it-with-flask-95a805de10c0
-- https://github.com/hugom1997/Flask-Cnn-Recognition-App
-
-[comment]: # (el anterior codigo necesitaba cambiar el http por https en una url de lgo de jquery: https://yootheme.com/support/question/131839)
