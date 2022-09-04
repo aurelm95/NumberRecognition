@@ -13,7 +13,7 @@ This repo also provides a [trained model](/model/saved_models/red_guardada.pickl
 
 You can try the model at https://aurelm95.herokuapp.com/numberrecognition/
 
-![](web_screenshot.png)
+![](web_screenshot.PNG)
 
 # Author
 **Aurelio Losquiño** 
