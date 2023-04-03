@@ -64,7 +64,7 @@ funcion de activacion
 
 %También es un tema de marketing por el tema de "inteligencia artificial"
 
-Formalmente una red neuronal es un modelo de deeplearning. El deeplearning (o también conocido como aprendizaje profundo) es la rama específica del aprendizaje automático (o machine learning) que usa redes neuronales.\\
+Formalmente una red neuronal es un modelo matemático. El deeplearning (o también conocido como aprendizaje profundo) es la rama específica del aprendizaje automático (o machine learning) que usa redes neuronales.\\
 
 
 \subsection{Perceptrón}
@@ -77,7 +77,7 @@ $$y=\begin{cases}
 1, & \text{si } \sum_{i=1}^nw_ix_i-u>0
 \end{cases}$$
 
-El perceptrón sirve como modelo para toma de decisiones basado en otros hechos. Por ejemplo puede modelizar la siguiente toma de decisiones. Consideremos el siguiente escenario\footnote{\url{https://youtu.be/CU24iC3grq8?t=236}}:
+El perceptrón sirve como modelo para tomar de decisiones basado en otros hechos. Por ejemplo, puede modelizar la siguiente toma de decisiones. Consideremos el siguiente escenario\footnote{\url{https://youtu.be/CU24iC3grq8?t=236}}:
 
 \begin{itemize}
 \item $y=$Irnos de viaje
@@ -94,10 +94,10 @@ Sin embargo, un perceptrón no es capaz de modelizar cualquier toma de decisión
 
 
 Nótese que si fijamos $w_1,\hdots,w_n,u\in\mathbb{R} $, entonces
-$$H:=\left\{(x_1,\hdots,x_n)\in\mathbb{R}^n \ \middle| \ \sum_{i=1}^nw_ix_i-u= 0\right\} $$
-define un hiperplano de $\mathbb{R}^n$. Desde un punto de vista geométrico, este hiperplano es el separador entre $\{x\in\{0,1\}^n \ | \ y(x)=1\} $ y $\{x\in\{0,1\}^n \ | \ y(x)=1\} $. Es decir, que el perceptrón únicamente puede hacer una separación lineal (o afín) del conjunto de puntos $\{0,1\}^n $.\\
+$$H:=\left\{x=(x_1,\hdots,x_n)\in\mathbb{R}^n \ \middle| \ y(x)=\sum_{i=1}^nw_ix_i-u= 0\right\} $$
+define un hiperplano de $\mathbb{R}^n$. Desde un punto de vista geométrico, este hiperplano es el separador entre $\{x\in\{0,1\}^n \ | \ y(x)<0\} $ y $\{x\in\{0,1\}^n \ | \ y(x)>0\} $. Es decir, que el perceptrón únicamente puede hacer una separación lineal (o afín) del conjunto de puntos $\{0,1\}^n $.\\
 
-Como consecuencia, un perceptrón no puede reproducir la operación lógica XOR.
+En particular, un perceptrón no puede reproducir la operación lógica XOR.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=4cm]{imagenes/XOR.png}
@@ -112,10 +112,10 @@ Como consecuencia, un perceptrón no puede reproducir la operación lógica XOR.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=4cm]{imagenes/NAND.png}
-\caption{Red neuronal modelizando una puerta NAND}
+\caption{Perceptron modelizando una puerta NAND}
 \label{fig:red_nand}
 \end{figure}
-En la figura \ref{fig:red_nand} se muestra la representación de un perceptrón que reproduce una puerta lógica NAND.
+En la figura \ref{fig:red_nand} se muestra una representación gráfica de un perceptrón que reproduce una puerta lógica NAND.
 Esta es una red con dos capas: la primera contiene dos neuronas y la segunda solo una con un umbral igual a $3$. Además observamos que los pesos de las dos únicas conexiones son iguales a $-2$. En este caso la función de activación de la neurona de la segunda capa es 
 $$f(x)=\begin{cases}
 1 \text{ si } x>0\\
@@ -153,7 +153,7 @@ Otro aspecto a mejorar es la invarianza por traslación\footnote{\url{https://ww
 \subsection{Convolución}
 
 \subsubsection{Filtros}
-Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su elemento principal (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
+Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su elemento principal o (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
 
 Un filtro es un tensor de tres dimensiones cuyas "capas" son kernels\footnote{\url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}. Es posible que un filtro contenga un único kernel, de modo que a veces  estas palabras se usan indistintamente.\\
 
@@ -204,7 +204,7 @@ Sea $I$ una imagen con $c$ canales de resolución $n\times n$ y sea $F$ un filtr
 
 % Sean $i$ y $j$ tales que 
 % $$\frac{m-1}{2}\leq i,j<n-\frac{m-1}{2}. $$
-El elemento $i,j$ de $Conv(I,F,p,s)$ viene definido\footnote{Inspirado en \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872}} por
+El elemento $i,j$ de $Conv(I,F,p,s)$ viene definido\footnote{Inspirado en \url{https://ichi.pro/es/matematicas-de-las-redes-neuronales-convolucionales-30697178023872} \text{y a su vez traducido de} \url{https://towardsdatascience.com/convolutional-neural-networks-mathematics-1beb3e6447c0}} por
 
 % $$I'[i,j]=\sum_{\alpha=1}^c \sum_{\beta=-\frac{m-1}{2}}^{\frac{m-1}{2}}\sum_{\gamma=-\frac{m-1}{2}}^{\frac{m-1}{2}} I[i+\beta,j+\gamma,k]\cdot F\left[\alpha+\frac{m-1}{2},\beta+\frac{m-1}{2}\right]  $$
 
@@ -216,6 +216,8 @@ y
 $$0\leq j\cdot s+\gamma <n+2p \quad \forall j,\gamma .$$
 Por lo tanto tenemos que  
 $$o=\left\lfloor \frac{n+2p-m}{s}\right\rfloor+1$$
+
+Nótese que si $n+2p-m$ no es múltiplo de $s$, entonces habrán filas y columnas de la imagen que se saltarán. Además, los píxeles de las esquinas y bordes tienen menor importancia en el cálculo. Este es el motivo por el cual se intruduce el paddin: Añadir filas y columnas redundates para que al convolución se haga con todos los píxeles de la imagen por igual.
 
 \subsubsection{visualización de la operación de convolución}
 
@@ -343,6 +345,35 @@ un cuadrado mas o menos gordito etc
 \subsection{aruitecturas de cnns famosas}
 hablarde las arquitecturas o implementar alguna
 
+
+\section{Historia}
+
+La siguiente información ha sdo obtenida de ChatGPT:\\
+
+
+La arquitectura LeNet-5 fue presentada por primera vez en un artículo titulado "Gradient-Based Learning Applied to Document Recognition" publicado por Yann LeCun, Léon Bottou, Yoshua Bengio, y Patrick Haffner en 1998. En este artículo, los autores demostraron el rendimiento superior de la arquitectura LeNet-5 en la tarea de reconocimiento de dígitos escritos a mano en comparación con otras técnicas de la época. Desde entonces, la arquitectura LeNet-5 se ha utilizado como base para muchas otras arquitecturas de redes neuronales convolucionales.\\
+
+
+Antes de la introducción de LeNet-5, se utilizaron varias técnicas para reconocimiento de dígitos escritos a mano, como la segmentación de imágenes, el análisis de características manuales y el uso de redes neuronales simples. En particular, el algoritmo de K-nearest neighbors (K-NN) y el algoritmo de redes neuronales de retropropagación se utilizaban comúnmente para esta tarea. Sin embargo, estos métodos no eran tan efectivos como LeNet-5 y tenían limitaciones significativas en términos de precisión y eficiencia en el entrenamiento y la inferencia.\\
+
+
+La arquitectura que superó a LeNet-5 en términos de rendimiento y popularidad fue AlexNet, presentada en 2012 por Alex Krizhevsky, Ilya Sutskever y Geoffrey Hinton. AlexNet fue entrenada en un conjunto de datos mucho más grande que LeNet-5, utilizando técnicas como la regularización y el aumento de datos para reducir el sobreajuste y mejorar la precisión. AlexNet también presentó varias innovaciones, como el uso de unidades de activación no lineales ReLU, la normalización por lotes y la utilización de una GPU para acelerar el entrenamiento. Estas técnicas permitieron a AlexNet lograr una precisión sin precedentes en la tarea de clasificación de imágenes, lo que allanó el camino para el desarrollo de arquitecturas aún más grandes y sofisticadas en los años siguientes.\\
+
+
+Después de AlexNet, se desarrollaron muchas arquitecturas más grandes y sofisticadas, que lograron una precisión aún mayor en tareas de visión por computadora. Entre las más importantes se encuentran:
+
+\begin{itemize}
+  \item VGG (2014): presentada por Karen Simonyan y Andrew Zisserman, esta arquitectura consta de varias capas convolucionales muy profundas y fue la primera en demostrar que el aumento del número de capas puede mejorar significativamente la precisión.
+  \item Inception (2014): desarrollada por Christian Szegedy y su equipo en Google, esta arquitectura utiliza filtros de múltiples tamaños en paralelo y una estructura de bloques en cascada para mejorar la eficiencia computacional y la precisión.
+  \item ResNet (2015): desarrollada por Kaiming He y su equipo en Microsoft, esta arquitectura utiliza conexiones de salto (skip connections) para permitir que la información fluya directamente a través de las capas sin ser atenuada por la función de activación, lo que permite construir redes extremadamente profundas con una precisión aún mayor.
+  \item DenseNet (2016): desarrollada por Gao Huang y su equipo en el Laboratorio de IA de Google, esta arquitectura utiliza conexiones densas entre capas para permitir que cada capa reciba información de todas las capas anteriores en la red, lo que reduce el riesgo de desvanecimiento del gradiente y mejora la precisión.
+  \item EfficientNet (2019): desarrollada por Mingxing Tan y Quoc V. Le en Google, esta arquitectura utiliza un enfoque de escalado compuesto para optimizar el tamaño, la profundidad y la resolución de la red para obtener la mejor relación rendimiento-eficiencia para una tarea dada.
+\end{itemize}
+
+Cada una de estas arquitecturas ha introducido innovaciones significativas y ha establecido nuevos récords de precisión en tareas de visión por computadora.\\
+
+
+La primera red neuronal convolucional para detección de objetos se llamó R-CNN (Region-based Convolutional Neural Network) y fue presentada por Ross Girshick en 2014. La arquitectura de R-CNN se basa en el uso de una red neuronal convolucional para extraer características de la imagen y un clasificador SVM para clasificar cada región propuesta. R-CNN fue un gran avance en la tarea de detección de objetos y logró superar con creces los métodos tradicionales basados en características de bajo nivel y clasificadores manuales. Desde entonces, han surgido muchas otras arquitecturas para la detección de objetos, incluyendo Fast R-CNN, Faster R-CNN, YOLO (You Only Look Once) y SSD (Single Shot Detector).
 \end{document}
 
 

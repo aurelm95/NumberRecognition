@@ -4,7 +4,7 @@ import cv2
 
 import filters
 
-class Convolucion:
+class Convolucion():
 
     def __init__(self,n_filtros=1,tamaño_filtro=3, stride=1, padding=1, filtro=None):
         # constantes
@@ -20,7 +20,7 @@ class Convolucion:
             self.filtro=np.array(filtro)
             assert self.filtro.shape[0]==self.filtro.shape[1], "El filtro tiene que ser cuadrado y su shape es: "+str(self.filtro.shape)
             self.tamaño_filtro=self.filtro.shape[0]
-    
+        
     def regiones_de_imagen(self, imagen):
         self.imagen=imagen
         alto, ancho=imagen.shape
@@ -59,34 +59,35 @@ class Convolucion:
         
             - We are using numpy slicing: image[a:b,c:d,e:f]
             - np.sum sums all the elemets os a tensor of any dimension
-
-
-        
         
         """
         result=[]
         channels, height, width = imagen.shape
         if debug: 
             assert height==width, "ERROR: The image is not squared!"
-        tamaño_output=int(np.floor((height+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        
         print("Tamaño de la imagen:",imagen.shape)
-        print("Tamaño del filtro:",self.filtro.shape)
-        print("tamaño_output:",tamaño_output)
+
+        print(f"Padding: {self.padding}, tamaño esperado tras el padding: {(channels, height+2*self.padding, width+2*self.padding)}")
         imagen=np.pad(imagen,self.padding)[1:-1] # El padding hace que tenga 5 canales. me quedo con los tres del medio
         print("Tras el padding, la imagen tiene una shape:",imagen.shape)
+
+        print("Tamaño del filtro:",self.filtro.shape)
+        tamaño_output=int(np.floor((height+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        print("tamaño_output:",tamaño_output)
+        
+        
         for i in range(tamaño_output):
             fila=[]
             for j in range(tamaño_output):
                 region=imagen[:,i*self.stride:i*self.stride+self.tamaño_filtro,j*self.stride:j*self.stride+self.tamaño_filtro]
-                # print("Tamaño de la region:",region.shape)
+                print("Tamaño de la region:",region.shape)
                 fila.append(np.sum(region*self.filtro))
             result.append(fila)
-        return np.array(result)
+        result=np.array(result)
+        print(f"{result.shape=}")
+        return result
     
-    
-    
-
-        
 
 
     # Sobre implementaciones eficientes de la convolucion de imagenc on filtro
@@ -162,6 +163,7 @@ if __name__=='__main__' and 1:
     # cv2.imshow("img",lena_image)
     # cv2.waitKey(11000)
     lena_image_channels_first=np.einsum('ijk->kij',lena_image) # parece ser que es lo mas rapido https://stackoverflow.com/questions/43829711/what-is-the-correct-way-to-change-image-channel-ordering-between-channels-first
+    lena_image_channels_first=200*np.ones((3,5,5))
     print(lena_image_channels_first.shape)
     blur=Convolucion(filtro=filters.BLUR_FILTER)
     result=blur.aplicar_convolucion_full(lena_image_channels_first)
