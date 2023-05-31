@@ -155,7 +155,7 @@ Otro aspecto a mejorar es la invarianza por traslación\footnote{\url{https://ww
 \subsubsection{Filtros}
 Un kernel es una matriz cuadrada $K$ con coeficientes reales. Los kernels tienen una dimensión impar, de modo que se puede hablar de su elemento principal o (central)\footnote{\url{https://datascience.stackexchange.com/questions/23183/why-convolutions-always-use-odd-numbers-as-filter-size}}.\\
 
-Un filtro es un tensor de tres dimensiones cuyas "capas" son kernels\footnote{\url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}. Es posible que un filtro contenga un único kernel, de modo que a veces  estas palabras se usan indistintamente.\\
+Un filtro es un tensor de más de una dimensión cuyas "capas" son kernels\footnote{\url{https://stats.stackexchange.com/questions/154798/difference-between-kernel-and-filter-in-cnn}}. Es posible que un filtro contenga un único kernel, de modo que a veces estas palabras se usan indistintamente.\\
 
 Hay distintos filtros destacables, por ejemplo:
 \begin{itemize}
@@ -217,7 +217,9 @@ $$0\leq j\cdot s+\gamma <n+2p \quad \forall j,\gamma .$$
 Por lo tanto tenemos que  
 $$o=\left\lfloor \frac{n+2p-m}{s}\right\rfloor+1$$
 
-Nótese que si $n+2p-m$ no es múltiplo de $s$, entonces habrán filas y columnas de la imagen que se saltarán. Además, los píxeles de las esquinas y bordes tienen menor importancia en el cálculo. Este es el motivo por el cual se intruduce el paddin: Añadir filas y columnas redundates para que al convolución se haga con todos los píxeles de la imagen por igual.
+Nótese que si $n+2p-m$ no es múltiplo de $s$, entonces habrán filas y columnas de la imagen que se saltarán. Además, los píxeles de las esquinas y bordes tienen menor importancia en el cálculo. Este es el motivo por el cual se introduce el padding: Añadir filas y columnas redundates para que al convolución se haga con todos los píxeles de la imagen por igual.\\
+
+Nota: Los frameworks tensorflow y keras admiten como padding la opción 'same' que quiere decir que se ajustará el padding adecuado para que tras la convolución no se pierda tamaño\footnote{\url{https://youtu.be/l16RxAmP9QE?list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&t=1376}}
 
 \subsubsection{visualización de la operación de convolución}
 

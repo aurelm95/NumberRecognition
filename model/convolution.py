@@ -6,26 +6,21 @@ import filters
 
 class Convolucion():
 
-    def __init__(self,n_filtros=1,tamaño_filtro=3, stride=1, padding=1, filtro=None):
+    def __init__(self,n_filtros=1, kernels_por_filtro=3, tamaño_kernel=3, stride=1, padding=1, filtros=None):
         # constantes
         self.n_filtros=n_filtros
-        self.tamaño_filtro=tamaño_filtro
+        self.tamaño_kernel=tamaño_kernel
         self.stride=stride
         self.padding=padding
 
         # variables
-        if filtro is None:
-            self.filtro=np.random.rand(n_filtros,tamaño_filtro,tamaño_filtro)/(tamaño_filtro*tamaño_filtro) # se divide entre la cantidad para algun tipo de normalizacion
+        if filtros is None:
+            self.filtros=np.random.rand(n_filtros,kernels_por_filtro,tamaño_kernel,tamaño_kernel)/(tamaño_kernel*tamaño_kernel) # se divide entre la cantidad para algun tipo de normalizacion
         else:
-            self.filtro=np.array(filtro)
-            assert self.filtro.shape[0]==self.filtro.shape[1], "El filtro tiene que ser cuadrado y su shape es: "+str(self.filtro.shape)
-            self.tamaño_filtro=self.filtro.shape[0]
+            self.filtros=np.array(filtros)
+            assert self.filtros.shape[-1]==self.filtros.shape[-2], "El filtro tiene que ser cuadrado y su shape es: "+str(self.filtro.shape)
+            self.tamaño_kernel=self.filtros.shape[0]
         
-    def regiones_de_imagen(self, imagen):
-        self.imagen=imagen
-        alto, ancho=imagen.shape
-        # for i in range()
-
     # metodo pensado para tener un unico filtro y una imagen con un unico canal
     def aplicar_convolucion_ingenua(self, imagen):
         """
@@ -37,19 +32,19 @@ class Convolucion():
         """
         result=[]
         # asumo que imagen es una np.array cuadrada de lado .shape[0]
-        tamaño_output=int(np.floor((imagen.shape[0]+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        tamaño_output=int(np.floor((imagen.shape[0]+2*self.padding-self.tamaño_kernel)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
         print("tamaño_output:",tamaño_output)
         imagen=np.pad(imagen,self.padding)
         # print(imagen)
         for i in range(tamaño_output):
             fila=[]
             for j in range(tamaño_output):
-                region=imagen[i:i+self.tamaño_filtro,j:j+self.tamaño_filtro]
+                region=imagen[i:i+self.tamaño_kernel,j:j+self.tamaño_kernel]
                 fila.append(np.sum(region*self.filtro))
             result.append(fila)
         return np.array(result)
     
-    def aplicar_convolucion_full(self, imagen, debug=False):
+    def aplicar_convolucion_full(self, imagen, filtro, debug=False):
         """
         Applies convolution to a given image with the current filter, stride and padding
 
@@ -72,23 +67,25 @@ class Convolucion():
         imagen=np.pad(imagen,self.padding)[1:-1] # El padding hace que tenga 5 canales. me quedo con los tres del medio
         print("Tras el padding, la imagen tiene una shape:",imagen.shape)
 
-        print("Tamaño del filtro:",self.filtro.shape)
-        tamaño_output=int(np.floor((height+2*self.padding-self.tamaño_filtro)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
+        print("Tamaño del filtro:",filtro.shape)
+        tamaño_output=int(np.floor((height+2*self.padding-self.tamaño_kernel)/self.stride)+1) # en realidad deberia servir unicamente como debug para comprobar las dimensiones del output
         print("tamaño_output:",tamaño_output)
         
         
         for i in range(tamaño_output):
             fila=[]
             for j in range(tamaño_output):
-                region=imagen[:,i*self.stride:i*self.stride+self.tamaño_filtro,j*self.stride:j*self.stride+self.tamaño_filtro]
+                region=imagen[:,i*self.stride:i*self.stride+self.tamaño_kernel,j*self.stride:j*self.stride+self.tamaño_kernel]
                 print("Tamaño de la region:",region.shape)
-                fila.append(np.sum(region*self.filtro))
+                fila.append(np.sum(region*filtro))
             result.append(fila)
         result=np.array(result)
         print(f"{result.shape=}")
         return result
     
+    def forward(self, imagen):
 
+        result=np.zeros(shape=())
 
     # Sobre implementaciones eficientes de la convolucion de imagenc on filtro
     # https://stackoverflow.com/questions/5710842/fastest-2d-convolution-or-image-filter-in-python
