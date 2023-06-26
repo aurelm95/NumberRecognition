@@ -198,7 +198,10 @@ $$Pad(I,p)[i,j,k]:=\begin{cases}
 \end{cases} $$
 
 
-\subsubsection{Operación de convolución}
+\subsubsection{Operación de convolución/correlación}
+
+Nota: A continuación se va a definir la operación de correlación. En el ámbito de redes neuronales, se le suele llamar convolución. Esto se debe a que la única diferencia entre una correlación y una convolución es un flip de una de las entradas y en el caso de las redes, la red aprenderia a clasificar bien con los pesos "flipeados"\footnote{\url{https://youtu.be/cUa3Jug3TiA?list=PLWzLQn_hxe6ZlC9-YMt3nN0Eo-ZpOJuXd&t=590}}.
+
 Sea $I$ una imagen con $c$ canales de resolución $n\times n$ y sea $F$ un filtro formado por $c$ kernels de dimensión $m\times m$ con $m<n$. Sean $p,s\in \mathbb{N}$. La operación de convolución de $I$ y $F$ con un stride $s$ y padding $p$ es una imagen $Conv(I,F,p,s)$ con un único canal (o feature map) de dimensión, digamos, $o\times o$.\\
 
 
@@ -248,6 +251,8 @@ En realidad, no aplicaremos un solo kernel. Por ejemplo, en esta primera convolu
 Cuando tratamos con imágenes con más de un canal (por ejemplo rgb), los filtros deben tener el  mismo número de canales (kernels?). De modo que cada kernel  hace una convolución con su canal correspondiente. Posteriormente se cogen todas esos outputs y se hace la media. De este modo, tras convolucionar el filtro con la imagen de más de un canal, se sigue teniendo una imagen con un único canal como output. En consecuencia, la cantidad de imagenes de output será igual a la cantidad de filtros que tenga esa capa convolusional. Finalmente a cada una de estas imágenes se les suma un cierto humbral y se aplica la ReLU.\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\\
 
 Nota: por lo que veo en la libreria de tensorflow, cada kernel del filtro tiene su propio bias. tras aplicar el bias se hace la media.\footnote{\url{https://www.youtube.com/watch?v=S5MwKyYYLSM&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=51}}
+
+Nota: Por lo general se suele escoger que la cantidad de filtros sea una potencia de 2 por algún tipo de cuestión de eficiencia\footnote{\url{https://youtu.be/XkqgTaWle0I?list=PLWzLQn_hxe6ZlC9-YMt3nN0Eo-ZpOJuXd&t=61}}
 
 \subsection{Implementación}
 Una de las redes más sencillas es la LeNET-5\footnote{\url{https://www.youtube.com/watch?v=HEH1clGg8o8&list=PLdxQ7SoCLQANQ9fQcJ0wnnTzkFsJHlWEj&index=50}}\footnote{\url{https://en.wikipedia.org/wiki/LeNet}}\\
